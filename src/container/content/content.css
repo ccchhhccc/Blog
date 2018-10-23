@@ -1,0 +1,103 @@
+#content{
+    width: 1024px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+.box{
+    overflow: hidden;
+    padding: 15px 0;
+}
+.message{
+    word-wrap: break-word;
+}
+.box .content-li{
+    padding: 0 20px 20px 20px;
+    margin-bottom: 20px;
+    list-style: none;
+    border-bottom: 1px solid #ebeef5;
+}
+.box .content-li:last-child{
+    border-bottom: 0;
+}
+.box .content-li:hover{
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,.1);
+    cursor: pointer;
+}
+.box .box-title{
+    padding: 10px 0;
+    overflow: hidden;
+}
+.box-title h1{
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 0px;
+    color: #1e6bb8;
+}
+.box .ant-tag{
+    margin-top: 12px;
+}
+.box .ant-timeline-item-content{
+    word-break: break-all; 
+}
+.box .ant-timeline-item{
+    margin-bottom: 10px;
+}
+
+.friends,.animate{
+    overflow: hidden;
+    padding: 20px;
+    color: #1e6bb8;
+    width: 172px;
+    display: inline-block;
+    border: 1px solid #ebeef5;
+    border-radius: 4px;
+    margin: 10px;
+}
+.animate{
+    width: 236px;
+}
+.friends:hover{
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+}
+.animate:hover{
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+}
+.friends img{
+    /* width: 100%; */
+    width: 130px;
+    height: 130px;
+    display: block;
+}
+.animate img{
+    width: 100%;
+    display: block;
+}
+.friends .brief{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.animate .brief{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.add{
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.add .add-button{
+    float: right;
+}
+.ant-modal-header{
+    border-bottom: 0;
+}
+.myPage{
+    float: right;
+}
+.toWrite{
+    overflow: hidden;
+}
+.box .content-li img{
+    max-width: 100%;
+}

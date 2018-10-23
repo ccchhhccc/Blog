@@ -1,0 +1,13 @@
+#foot{
+    overflow: hidden;
+}
+.footer{
+    width: 1024px;
+    margin: 0 auto;
+    padding: 45px 0;
+    border-top: 1px solid #ebeef5;
+}
+.footer p{
+    text-align: center;
+    margin: 0;
+}

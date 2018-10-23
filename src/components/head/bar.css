@@ -1,0 +1,44 @@
+#bar{
+    width:1024px;
+    height: 30px;
+    position: relative;
+    margin: 0 auto;
+}
+#bar .bar-top{
+    position: absolute;
+    top: -100%;
+    width: 1024px;
+    height: 64px;
+    background: #fff;
+    border:1px solid #ebeef5;
+}
+.ant-menu-horizontal{
+    line-height: 60px;
+}
+.userinfo{
+    float: right;
+    display: flex;
+    margin-top: 4px;
+    margin-right: 5px
+}
+.userinfo p{
+    color: rgb(96, 98, 102);
+    margin: 0;
+}
+.userinfo i{
+    font-size: 13px;
+    margin-right: 5px;
+}
+.gitname a{
+    font-size: 20px;
+    color: rgb(96, 98, 102);
+}
+.location{
+    text-align: right;
+}
+#bar img{
+    width: 54px;
+    height: 54px;
+    display: block;
+    margin-left:15px;
+}

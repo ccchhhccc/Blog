@@ -1,0 +1,16 @@
+#head{
+    height: 370px;
+    color: #fff;
+    overflow: hidden;
+    background:linear-gradient(120deg, rgb(38, 144, 249), rgb(252, 45, 45));
+}
+.author{
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;    
+}
+.author h1{
+    font-size: 44px;
+    padding:80px 0 15px;
+    color: #fff;
+}

@@ -1,0 +1,7 @@
+#MenuItem{
+    margin: 0 20px 0 0;
+    float: left;
+}
+#MenuItem .ant-menu-vertical{
+    border-right:0px;
+}

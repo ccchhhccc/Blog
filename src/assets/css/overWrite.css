@@ -1,0 +1,19 @@
+.ant-modal-body{
+    padding:24px 24px 1px 24px;
+}
+.ant-modal-header{
+    border-bottom: 0
+}
+.showMdDialog .ant-modal-footer{
+    border-top: 0;
+    text-align: center;
+}
+.showMdDialog .ant-modal-header{
+    text-align: center
+}
+.showMdDialog{
+    width: 1200px;
+}
+body,html{
+    min-width: 1200px;
+}
