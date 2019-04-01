@@ -6,7 +6,8 @@ class Head extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            musicIcon:''
+            musicIcon: '',
+            timer: 0
         }
         this.initMusicIcon = this.initMusicIcon.bind(this)
     }
@@ -16,11 +17,10 @@ class Head extends Component {
             //头部
             <div id="head" ref="head">
                 <div className="author">
-                    <h1>chenhaichao</h1>
-                    <h1 onClick={this.props.changeBool.bind(this)}>{this.props.test}</h1>
+                    <h1 className="hinge">chenhaichao</h1>
                     <p>欢迎来到陈海超的个人网站</p>
                 </div>
-                <div className="myshow" dangerouslySetInnerHTML={{__html: this.state.musicIcon}} />
+                <div className="myIcon" dangerouslySetInnerHTML={{ __html: this.state.musicIcon }} />
                 {/* {renderRoutes(this.props.route.routes, { someProp: 'these extra props are optional' })} */}
             </div>
         )
@@ -40,17 +40,17 @@ class Head extends Component {
             html += `<span style="font-size:${fontSize}px;position:absolute;top:${randomTop}px;left:${randomLeft}px">♪</span>`
         }
         this.setState({
-            'musicIcon':html
+            'musicIcon': html
         })
     }
 }
 
 export default connect(state => state, (dispatch, props) => {
     return {
-        changeBool() {
+        changeBool(val) {
             dispatch({
                 type: 'changeBool',
-                test: '瓜皮，乱点啥'
+                test: val?val:'瓜皮，乱点啥'
             })
         }
     }

@@ -9,6 +9,10 @@ const store = createStore((state={
 			return Object.assign({}, state, {
 				test: action.test
 			})
+		case "changeTime":
+			return Object.assign({}, state, {
+				test: action.test
+			})
 		case "changeItem":
 			return Object.assign({}, state, {
 				meumItem: action.meumItem

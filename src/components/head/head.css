@@ -1,16 +1,66 @@
-#head{
+#head {
     height: 370px;
     color: #fff;
     overflow: hidden;
-    background:linear-gradient(120deg, rgb(38, 144, 249), rgb(252, 45, 45));
+    background: linear-gradient(120deg, rgb(38, 144, 249), rgb(252, 45, 45));
 }
-.author{
+
+.author {
     width: 1200px;
     margin: 0 auto;
-    text-align: center;    
+    text-align: center;
 }
-.author h1{
+
+.author h1 {
     font-size: 44px;
-    padding:80px 0 15px;
+    padding: 80px 0 15px;
     color: #fff;
+    display: inline-block;
+}
+
+.author .headtime {
+    padding: 10px;
+}
+.hinge{
+    animation-duration: 1s;
+    animation-delay: .2s;
+    animation-timing-function: ease;
+    animation-fill-mode: both;
+    animation-name: hinge;
+    z-index: 100;
+}
+@keyframes hinge {
+    0% {
+        transform: rotate(0);
+        transform-origin: top left;
+        animation-timing-function: ease-in-out;
+    }
+
+    20%,
+    60% {
+        transform: rotate(80deg);
+        transform-origin: top left;
+        animation-timing-function: ease-in-out;
+        color: red;
+    }
+
+    40% {
+        transform: rotate(60deg);
+        transform-origin: top left;
+        animation-timing-function: ease-in-out;
+        color: skyblue;
+    }
+
+    80% {
+        transform: rotate(60deg) translateY(0);
+        opacity: 1;
+        transform-origin: top left;
+        animation-timing-function: ease-in-out;
+        color: skyblue;
+    }
+
+    100% {
+        transform: translateY(700px);
+        opacity: 0;
+    }
 }

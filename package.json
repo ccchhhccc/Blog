@@ -2,6 +2,7 @@
   "name": "react-blog",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:7788",
   "dependencies": {
     "antd": "^3.7.1",
     "axios": "^0.18.0",
@@ -28,6 +29,5 @@
   },
   "devDependencies": {
     "react-app-rewired": "^1.5.2"
-  },
-  "proxy": "http://www.chenhaichao.cn/"
+  }
 }
