@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Base64 } from 'js-base64'
 import 'highlight.js/styles/default.css'
 import hljs from 'highlight.js'   // https://highlightjs.org/
+import { Link } from 'react-router-dom';
 const cheerio = require('cheerio')
 const md = require('markdown-it')({
     highlight: function (str, lang) {
@@ -25,33 +26,34 @@ class Animate extends React.Component {
         this.state = {
             mess: [],
             color: ['magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue', 'geekblue', 'purple'],
-            page:1,
-            count:0
+            page: 1,
+            count: 0
         }
         this.getRandomColor = this.getRandomColor.bind(this)
         this.toShowMd = this.toShowMd.bind(this)
-        this.goToDetail = this.goToDetail.bind(this)
         this.pageChange = this.pageChange.bind(this)
     }
     render() {
         return (
-            <div>
+            <div style={{ display: this.props.show ? 'block' : 'none' }}>
                 <ul>{
                     this.state.mess.map((item, index) => {
                         return (
-                            <li className="content-li" onClick={() => { this.goToDetail(item.id) }} key={item + index}>
-                                <div className="box-title">
-                                    <h1>{Base64.decode(item.title)}</h1>
-                                    {
-                                        JSON.parse(item.tags).map((val, i) => {
-                                            return (
-                                                <Tag color={this.getRandomColor()} key={val + i}>{val}</Tag>
-                                            )
-                                        })
-                                    }
-                                </div>
-                                <div className="message" dangerouslySetInnerHTML={{ __html: this.toShowMd(item.content) }}></div>
-                            </li>
+                            <Link to={'/showmarkdown/' + item.id} key={item + index}>
+                                <li className="content-li">
+                                    <div className="box-title">
+                                        <h1>{Base64.decode(item.title)}</h1>
+                                        {
+                                            JSON.parse(item.tags).map((val, i) => {
+                                                return (
+                                                    <Tag color={this.getRandomColor()} key={val + i}>{val}</Tag>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                    <div className="message" dangerouslySetInnerHTML={{ __html: this.toShowMd(item.content) }}></div>
+                                </li>
+                            </Link>
                         )
                     })
                 }
@@ -61,13 +63,9 @@ class Animate extends React.Component {
         )
     }
     pageChange(page) {
-        axios.post('/mymd/animate/all',{page}).then(rel => {
-            this.setState({ mess: rel.data.data,count:rel.data.count,page:page })
+        axios.post('/mymd/animate/all', { page }).then(rel => {
+            this.setState({ mess: rel.data.data, count: rel.data.count, page: page })
         })
-    }
-    goToDetail(id) {
-        let href = window.location.origin + '/#/showmarkdown/' + id
-        window.location.href = href
     }
     toShowMd(txt) {
         let oldHtml = md.render(Base64.decode(txt))

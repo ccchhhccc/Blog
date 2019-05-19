@@ -36,7 +36,7 @@ class Vistor extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div style={{display:this.props.show?'block':'none'}}>
                 <div className="toWrite">
                     <Button type="danger" className="myPage" onClick={this.gotoWrite} ghost>写点东西吧</Button>
                 </div>
@@ -65,7 +65,7 @@ class Vistor extends React.Component {
         )
     }
     gotoWrite(){
-        let href = window.location.origin + '/#/visitorMarkdown'
+        let href = window.location.origin + '/visitorMarkdown'
         window.location.href = href
     }
     pageChange(page) {
@@ -74,7 +74,7 @@ class Vistor extends React.Component {
         })
     }
     goToDetail(id) {
-        let href = window.location.origin + '/#/showmarkdown/' + id
+        let href = window.location.origin + '/showmarkdown/' + id
         window.location.href = href
     }
     toShowMd(txt) {

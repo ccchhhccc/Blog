@@ -43,7 +43,7 @@ class Note extends React.Component {
     render() {
         //const { getFieldDecorator } = this.props.form;
         return (
-            <div>
+            <div style={{display:this.props.show?'block':'none'}}>
                 <div className="add">
                     <Button type="primary" onClick={this.showAddModal} className="add-button" ghost>新增友联</Button>
                 </div>

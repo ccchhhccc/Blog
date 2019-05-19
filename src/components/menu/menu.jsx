@@ -42,12 +42,13 @@ class MenuItem extends React.Component {
     choose(e){
         this.props.onChoose(e.key)
         this.props.changeItem(e.key)
-        let href = window.location.origin + '/#/index/'+e.key
-        window.location.href = href
-        //history.push({ pathname: '/#/index/'+e.key })
+    }
+    componentDidMount(){
+        console.log(this.props)
     }
 }
 export default connect(state => state, (dispatch, props) => {
+    console.log(props)
     return {
         changeItem(value) {
             dispatch({

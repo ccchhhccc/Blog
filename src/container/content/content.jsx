@@ -6,7 +6,6 @@ import Note from '../note.jsx'
 import Friend from '../friends.jsx'
 import Animate from '../animate.jsx'
 import { connect } from "react-redux";
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Vistor from '../visitor'
 import Move from '../move'
 
@@ -28,15 +27,13 @@ class content extends React.Component {
                         </div>
                     </Col>
                     <Col span={18} offset={1}>
-                        <Router>
-                            <div className="box">
-                                <Route path="/index/note" component={Note}></Route>
-                                <Route path="/index/animate" component={Animate}></Route>
-                                <Route path="/index/friends" component={Friend}></Route>
-                                <Route path="/index/visitor" component={Vistor}></Route>
-                                <Route path="/index/move" component={Move}></Route>
-                            </div>
-                        </Router>
+                        <div className="box">
+                            <Note show={this.state.chooseKey==='note'}/>
+                            <Animate show={this.state.chooseKey==='animate'} />
+                            <Friend show={this.state.chooseKey==='friends'} />
+                            <Vistor show={this.state.chooseKey==='visitor'} />
+                            <Move show={this.state.chooseKey==='move'} />
+                        </div>
                     </Col>
                 </Row>
             </div>
@@ -46,6 +43,9 @@ class content extends React.Component {
         this.setState({
             chooseKey: val
         })
+    }
+    componentDidMount(){
+        console.log(this)
     }
 }
 //export default content

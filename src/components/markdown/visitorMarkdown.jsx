@@ -116,8 +116,8 @@ class VistorMd extends Component {
         console.log({ content: Base64.encode(this.state.writeTxt), title: Base64.encode(this.state.title), tags: this.state.tags })
         axios.post('/mymd/visitor/add', { content: Base64.encode(this.state.writeTxt), title: Base64.encode(this.state.title), tags: this.state.tags }).then(rel => {
             if(rel.data==='success'){
-                let href = window.location.origin + '/#/index/visitor'
-                window.location.href = href
+                console.log(this.props)
+                this.props.history.push('/')
             }else{
                 message.error('出错啦  <゜)))彡');
             }
