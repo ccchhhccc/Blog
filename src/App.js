@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import Markdown from './components/markdown/markdown'
 import visitorMarkdown from './components/markdown/visitorMarkdown'
 import Showmd from './components/markdown/showMarkdown'
+import Updatemd from './components/markdown/updatemarkdown'
 
 //import { hashHistory,withRouter } from 'react-router'
 import { createBrowserHistory } from 'history';
@@ -26,6 +27,7 @@ class App extends Component {
             <Route path="/markdown" component={Markdown}></Route>
             <Route path="/visitorMarkdown" component={visitorMarkdown}></Route>
             <Route path="/showmarkdown/:id" component={Showmd}></Route>
+            <Route path="/updatemarkdown/:id" component={Updatemd}></Route>
           </div>
         </Router>
         <Foot />

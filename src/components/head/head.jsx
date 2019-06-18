@@ -10,6 +10,7 @@ class Head extends Component {
             timer: 0
         }
         this.initMusicIcon = this.initMusicIcon.bind(this)
+        this.validateUrl = this.validateUrl.bind(this)
     }
 
     render() {
@@ -26,6 +27,7 @@ class Head extends Component {
         )
     }
     componentDidMount() {
+        //this.validateUrl()
         this.initMusicIcon()
     }
     //初始化音乐符号
@@ -42,6 +44,14 @@ class Head extends Component {
         this.setState({
             'musicIcon': html
         })
+    }
+    validateUrl(){
+        let url = window.location.href
+        if(url.indexOf('www')<0){
+            window.location.href = 'https://www.chenhaichao.cn'
+        }else if(url.indexOf('https')<0){
+            window.location.href = url.replace('http','https')
+        }
     }
 }
 
