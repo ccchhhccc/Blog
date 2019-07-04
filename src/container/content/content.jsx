@@ -23,7 +23,7 @@ class content extends React.Component {
                 <Row>
                     <Col span={5}>
                         <div className="box">
-                            <Menu onChoose={this.selectItem} />
+                            <Menu onChoose={this.selectItem} meumItem={this.state.chooseKey}/>
                         </div>
                     </Col>
                     <Col span={18} offset={1}>
@@ -31,11 +31,12 @@ class content extends React.Component {
                             <Note show={this.state.chooseKey==='note'}/>
                             <Animate show={this.state.chooseKey==='animate'} />
                             <Friend show={this.state.chooseKey==='friends'} />
-                            <Vistor show={this.state.chooseKey==='visitor'} />
+                            <Vistor history={this.props.history} show={this.state.chooseKey==='visitor'} />
                             <Move show={this.state.chooseKey==='move'} />
                         </div>
                     </Col>
                 </Row>
+                
             </div>
         )
     }
@@ -43,9 +44,16 @@ class content extends React.Component {
         this.setState({
             chooseKey: val
         })
+        sessionStorage.setItem('key',val)
     }
     componentDidMount(){
-        console.log(this)
+        let key = sessionStorage.getItem('key')
+        if(key){
+            this.selectItem(key)
+        }else{
+            this.selectItem('note')
+        }
+        
     }
 }
 //export default content

@@ -187,6 +187,7 @@ class VistorMd extends Component {
 
     componentDidMount() {
         this.showDemo()
+        console.log(this)
     }
 }
 export default connect(state => state, (dispatch, props) => {

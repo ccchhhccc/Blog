@@ -65,8 +65,7 @@ class Vistor extends React.Component {
         )
     }
     gotoWrite(){
-        let href = window.location.origin + '/visitorMarkdown'
-        window.location.href = href
+        this.props.history.push('/visitorMarkdown')
     }
     pageChange(page) {
         axios.post('/mymd/visitor/all',{page}).then(rel => {
@@ -74,8 +73,9 @@ class Vistor extends React.Component {
         })
     }
     goToDetail(id) {
-        let href = window.location.origin + '/showmarkdown/' + id
-        window.location.href = href
+        // let href = window.location.origin + '/showmarkdown/' + id
+        // window.location.href = href
+        this.props.history.push('/showmarkdown/'+id)
     }
     toShowMd(txt) {
         let oldHtml = md.render(Base64.decode(txt))

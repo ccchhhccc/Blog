@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <div className="App">
         <Head />
-        <Bar />
+        <Bar history={history}/>
         <Router history={history}>
           <div>
             <Route exact path="/" component={Content}></Route>

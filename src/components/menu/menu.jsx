@@ -43,9 +43,6 @@ class MenuItem extends React.Component {
         this.props.onChoose(e.key)
         this.props.changeItem(e.key)
     }
-    componentDidMount(){
-        console.log(this.props)
-    }
 }
 export default connect(state => state, (dispatch, props) => {
     console.log(props)

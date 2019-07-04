@@ -125,8 +125,7 @@ class Md extends Component {
         }
         axios.post('/mymd/add', { content: Base64.encode(this.state.writeTxt), title: Base64.encode(this.state.title), tags: this.state.tags,mdtype:this.state.mdtype }).then(rel => {
             if (rel.data === 'success') {
-                let href = window.location.origin + '/#/index/note'
-                window.location.href = href
+                this.props.history.push('/')
             } else {
                 message.error('出错啦  <゜)))彡');
             }
