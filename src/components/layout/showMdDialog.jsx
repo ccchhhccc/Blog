@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 class ShowMdDialog extends React.Component {
     constructor(props) {
         super(props)
-        this.handleCancel = this.handleCancel.bind(this)
     }
     render() {
         return (
@@ -24,7 +23,7 @@ class ShowMdDialog extends React.Component {
             </Modal>
         );
     }
-    handleCancel(){
+    handleCancel=()=>{
         this.props.hideMdDialog()
     }
 }

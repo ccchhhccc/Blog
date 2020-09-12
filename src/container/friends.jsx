@@ -38,7 +38,7 @@ class Note extends React.Component {
                     footer={null}
                     onCancel={() => this.setModal(false)}
                     >
-                    <WrappedNormalLoginForm closeFormModal={this.closeFormModal}/>
+                    <WrappedNormalLoginForm closeFormModal={e=>this.setModal(false)}/>
                 </Modal>
                 {
                     friends.map((item, index) => {
