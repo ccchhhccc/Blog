@@ -9,7 +9,7 @@
 }
 .footer p{
     text-align: center;
-    margin: 0;
+    margin-bottom: 10px;
 }
 .footer p a{
     color: rgba(0, 0, 0, 0.65)

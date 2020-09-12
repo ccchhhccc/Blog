@@ -26,7 +26,6 @@ class Head extends Component {
         )
     }
     componentDidMount() {
-        console.log(this)
         this.initMusicIcon()
     }
     //初始化音乐符号
@@ -46,13 +45,8 @@ class Head extends Component {
     }
 }
 
-export default connect(state => state, (dispatch, props) => {
+export default connect(state => state, () => {
     return {
-        changeBool(val) {
-            dispatch({
-                type: 'changeBool',
-                test: val?val:'瓜皮，乱点啥'
-            })
-        }
+        
     }
 })(Head);

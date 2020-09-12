@@ -63,4 +63,4 @@ class Note extends React.Component {
         )
     }
 }
-export default connect(state => state, () => {})(Note);
+export default connect(state => state, () => {return {}})(Note);
