@@ -5,15 +5,15 @@ import './menu.css'
 class MenuItem extends React.Component {
     constructor(props){
         super(props)
-        this.choose = this.choose.bind(this)
     }
     render() {
+        const {onChoose,meumItem} = this.props
         return (
             <div id="MenuItem">
                 <Menu
-                    onClick={this.choose}
+                    onClick={e=>onChoose(e.key)}
                     style={{ width: 203 }}
-                    defaultSelectedKeys={[this.props.meumItem]}
+                    defaultSelectedKeys={[meumItem]}
                 >
                     <Menu.Item key="note">
                         <Icon type="save" theme="outlined" />
@@ -39,19 +39,5 @@ class MenuItem extends React.Component {
             </div>
         )
     }
-    choose(e){
-        this.props.onChoose(e.key)
-        this.props.changeItem(e.key)
-    }
 }
-export default connect(state => state, (dispatch, props) => {
-    console.log(props)
-    return {
-        changeItem(value) {
-            dispatch({
-                type: 'changeItem',
-                meumItem: value
-            })
-        }
-    }
-})(MenuItem);
+export default connect(state => state, () => {return{}})(MenuItem);

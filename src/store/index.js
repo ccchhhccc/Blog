@@ -1,21 +1,12 @@
 import { createStore } from 'redux'
 
 const store = createStore((state={
-	test:'chc',
-	meumItem:'note'
+	pages:[1,1,1,1]
 },action)=>{
     switch(action.type){
-    	case "changeBool":
+    	case "updatePagesSize":
 			return Object.assign({}, state, {
-				test: action.test
-			})
-		case "changeTime":
-			return Object.assign({}, state, {
-				test: action.test
-			})
-		case "changeItem":
-			return Object.assign({}, state, {
-				meumItem: action.meumItem
+				pages: action.pages
 			})
      	default:
      		return state

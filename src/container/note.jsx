@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag, Pagination } from 'antd';
+import { Tag, Pagination ,Spin} from 'antd';
 import { connect } from "react-redux";
 import './content/content.css'
 import axios from 'axios'
@@ -29,13 +29,10 @@ class Note extends React.Component {
             page: 1,
             count: 0
         }
-        this.getRandomColor = this.getRandomColor.bind(this)
-        this.toShowMd = this.toShowMd.bind(this)
-        this.pageChange = this.pageChange.bind(this)
     }
     render() {
         return (
-            <div style={{ display: this.props.show ? 'block' : 'none' }}>
+            <div>
                 <ul>{
                     this.state.mess.map((item, index) => {
                         return (
@@ -58,16 +55,23 @@ class Note extends React.Component {
                     })
                 }
                 </ul>
-                <Pagination className="myPage" current={this.state.page} onChange={this.pageChange} simple defaultCurrent={1} total={this.state.count} />
+                {
+                    this.state.mess.length==0?<div style={{display:'flex',justifyContent:'center',alignItems:'center',height:250}}>
+                        <Spin/>
+                    </div>:<Pagination className="myPage" current={this.state.page} onChange={this.pageChange}  defaultCurrent={1} total={this.state.count} />
+                }
             </div>
         )
     }
-    pageChange(page) {
-        axios.post('/mymd/note/all', { page }).then(rel => {
+    pageChange=(page)=> {
+        const { url} = this.props
+        document.scrollingElement.scrollTop = 0
+        axios.post(url, { page }).then(rel => {
             this.setState({ mess: rel.data.data, count: rel.data.count, page: page })
+            this.updatePagesSize(page)
         })
     }
-    toShowMd(txt) {
+    toShowMd=(txt)=> {
         let oldHtml = md.render(Base64.decode(txt))
         const $ = cheerio.load(oldHtml)
         let randomLen = parseInt(2 + Math.random() * 3)
@@ -78,17 +82,29 @@ class Note extends React.Component {
         }
         return $('body').html()
     }
-    getRandomColor() {
+    getRandomColor=()=> {
         let num = parseInt(Math.random() * this.state.color.length)
         return this.state.color[num]
     }
 
     componentDidMount() {
-        this.pageChange(1)
-        console.log(this)
+        const {pages,index} = this.props
+        this.pageChange(pages[index])
+    }
+
+    updatePagesSize = page=>{
+        let {changePages, pages , index} = this.props
+        pages[index] = page
+        changePages&&changePages(pages)
     }
 }
-export default connect(state => state, (dispatch, props) => {
+export default connect(state => state, (dispatch) => {
     return {
+        changePages(pages) {
+            dispatch({
+                type: 'updatePagesSize',
+                pages
+            })
+        }
     }
 })(Note);

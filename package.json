@@ -2,7 +2,7 @@
   "name": "react-blog",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:7788",
+  "proxy": "http://chenhaichao.cn",
   "dependencies": {
     "antd": "^3.7.1",
     "axios": "^0.18.0",

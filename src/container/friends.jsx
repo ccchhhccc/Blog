@@ -2,7 +2,6 @@ import React from 'react'
 import { Icon, Tooltip ,Button,Modal ,Form } from 'antd';
 import { connect } from "react-redux";
 import './content/content.css'
-import axios from 'axios'
 import NormalLoginForm from '../components/layout/addLink.jsx'
 
 const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
@@ -11,53 +10,38 @@ class Note extends React.Component {
         super(props)
         this.state = {
             friends: [],
-            addModal:false
+            visible:false
         }
-        //this.goToFriendIndex = this.goToFriendIndex.bind(this)
-        this.showAddModal = this.showAddModal.bind(this)
-        this.closeFormModal = this.closeFormModal.bind(this)
-        this.getAllFriends = this.getAllFriends.bind(this)
     }
-    componentDidMount() {
-        this.getAllFriends()
-        console.log(this.props)
-    }
-    getAllFriends(){
-        axios.post('/friends/all').then(rel => {
-            console.log(rel)
-            this.setState({
-                friends: rel.data
-            })
-        })
-    }
-    closeFormModal(){
-        this.setState({addModal:false})
-        this.getAllFriends()
-    }
+    
     goToFriendIndex(url) {
         window.location.href = url
     }
-    showAddModal(){
-        this.setState({addModal:true})
+    
+    setModal = (visible)=>{
+        this.setState({
+            visible
+        })
     }
+
     render() {
-        //const { getFieldDecorator } = this.props.form;
+        const {friends} = this.props
         return (
-            <div style={{display:this.props.show?'block':'none'}}>
+            <div>
                 <div className="add">
-                    <Button type="primary" onClick={this.showAddModal} className="add-button" ghost>新增友联</Button>
+                    <Button type="primary" onClick={e=>this.setModal(true)} className="add-button" ghost>新增友联</Button>
                 </div>
                 <Modal
                     title="Let's be friends"
                     centered
-                    visible={this.state.addModal}
+                    visible={this.state.visible}
                     footer={null}
-                    onCancel={() => this.setState({addModal:false})}
+                    onCancel={() => this.setModal(false)}
                     >
                     <WrappedNormalLoginForm closeFormModal={this.closeFormModal}/>
                 </Modal>
                 {
-                    this.state.friends.map((item, index) => {
+                    friends.map((item, index) => {
                         return (
                             <div className="friends" key={index} onClick={()=>{this.goToFriendIndex(item.link)}}>
                                 <p>
@@ -79,7 +63,4 @@ class Note extends React.Component {
         )
     }
 }
-export default connect(state => state, (dispatch, props) => {
-    return {
-    }
-})(Note);
+export default connect(state => state, () => {})(Note);

@@ -4,60 +4,72 @@ import { Row, Col } from 'antd';
 import './content.css'
 import Note from '../note.jsx'
 import Friend from '../friends.jsx'
-import Animate from '../animate.jsx'
 import { connect } from "react-redux";
-import Vistor from '../visitor'
-import Move from '../move'
+import axios from 'axios'
 
 class content extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            chooseKey: 'note'
+            chooseKey: 'note',
+            friends:[]
         }
-        this.selectItem = this.selectItem.bind(this)
     }
+
+    componentDidMount(){
+        this.getlink()
+    }
+
     render() {
+        const {friends ,chooseKey} = this.state
         return (
             <div id="content">
                 <Row>
                     <Col span={5}>
                         <div className="box">
-                            <Menu onChoose={this.selectItem} meumItem={this.state.chooseKey}/>
+                            <Menu onChoose={this.selectItem} meumItem={chooseKey} />
                         </div>
                     </Col>
                     <Col span={18} offset={1}>
                         <div className="box">
-                            <Note show={this.state.chooseKey==='note'}/>
-                            <Animate show={this.state.chooseKey==='animate'} />
-                            <Friend show={this.state.chooseKey==='friends'} />
-                            <Vistor history={this.props.history} show={this.state.chooseKey==='visitor'} />
-                            <Move show={this.state.chooseKey==='move'} />
+                            {
+                                chooseKey == 'note' ? <Note index={0} url='/mymd/note/all' /> : null
+                            }
+                            {
+                                chooseKey == 'animate' ? <Note index={1} url='/mymd/animate/all' /> : null
+                            }
+                            {
+                                chooseKey == 'move' ? <Note index={2} url='/mymd/move/all' /> : null
+                            }
+                            {
+                                chooseKey == 'visitor' ? <Note index={3} url='/mymd/visitor/all' /> : null
+                            }
+
+                            {
+                                chooseKey == 'friends' ? <Friend friends={friends}/> : null
+                            }
                         </div>
                     </Col>
                 </Row>
-                
+
             </div>
         )
     }
-    selectItem(val) {
+
+    selectItem = (chooseKey) => {
         this.setState({
-            chooseKey: val
+            chooseKey
         })
-        sessionStorage.setItem('key',val)
     }
-    componentDidMount(){
-        let key = sessionStorage.getItem('key')
-        if(key){
-            this.selectItem(key)
-        }else{
-            this.selectItem('note')
-        }
-        
+
+    getlink = ()=>{
+        axios.post('/friends/all').then(rel => {
+            this.setState({
+                friends: rel.data
+            })
+        })
     }
+    
 }
 //export default content
-export default connect(state => state, (dispatch, props) => {
-    return {
-    }
-})(content);
+export default connect(state => state, () => {return{}})(content);
