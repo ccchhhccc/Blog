@@ -12,16 +12,16 @@ class content extends React.Component {
         super(props)
         this.state = {
             chooseKey: 'note',
-            friends:[]
+            friends: []
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getlink()
     }
 
     render() {
-        const {friends ,chooseKey} = this.state
+        const { friends, chooseKey } = this.state
         return (
             <div id="content">
                 <Row>
@@ -46,12 +46,11 @@ class content extends React.Component {
                             }
 
                             {
-                                chooseKey == 'friends' ? <Friend friends={friends}/> : null
+                                chooseKey == 'friends' ? <Friend friends={friends} /> : null
                             }
                         </div>
                     </Col>
                 </Row>
-
             </div>
         )
     }
@@ -62,14 +61,14 @@ class content extends React.Component {
         })
     }
 
-    getlink = ()=>{
+    getlink = () => {
         axios.post('/friends/all').then(rel => {
             this.setState({
                 friends: rel.data
             })
         })
     }
-    
+
 }
 //export default content
-export default connect(state => state, () => {return{}})(content);
+export default connect(state => state, () => { return {} })(content);
