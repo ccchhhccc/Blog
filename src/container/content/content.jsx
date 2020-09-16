@@ -22,6 +22,7 @@ class content extends React.Component {
 
     render() {
         const { friends, chooseKey } = this.state
+        const {history} = this.props
         return (
             <div id="content">
                 <Row>
@@ -42,7 +43,7 @@ class content extends React.Component {
                                 chooseKey == 'move' ? <Note index={2} url='/mymd/move/all' /> : null
                             }
                             {
-                                chooseKey == 'visitor' ? <Note index={3} url='/mymd/visitor/all' /> : null
+                                chooseKey == 'visitor' ? <Note index={3} showWrite history={history} url='/mymd/visitor/all' /> : null
                             }
 
                             {

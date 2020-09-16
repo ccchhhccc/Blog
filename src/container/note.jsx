@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag, Pagination ,Spin} from 'antd';
+import { Tag, Pagination, Spin ,Button} from 'antd';
 import { connect } from "react-redux";
 import './content/content.css'
 import axios from 'axios'
@@ -31,12 +31,19 @@ class Note extends React.Component {
         }
     }
     render() {
+        const { showWrite } = this.props
+        const {mess,page,count} = this.state
         return (
             <div>
+                {
+                    showWrite ? <div className="toWrite">
+                        <Button type="danger" className="myPage" onClick={this.gotoWrite} ghost>留个脚印吧</Button>
+                    </div> : null
+                }
                 <ul>{
-                    this.state.mess.map((item, index) => {
+                    mess.map((item, index) => {
                         return (
-                            <Link to={'/showmarkdown/'+item.id} key={item + index}>
+                            <Link to={'/showmarkdown/' + item.id} key={item + index}>
                                 <li className="content-li" >
                                     <div className="box-title">
                                         <h1>{Base64.decode(item.title)}</h1>
@@ -56,22 +63,26 @@ class Note extends React.Component {
                 }
                 </ul>
                 {
-                    this.state.mess.length==0?<div style={{display:'flex',justifyContent:'center',alignItems:'center',height:250}}>
-                        <Spin/>
-                    </div>:<Pagination className="myPage" current={this.state.page} onChange={this.pageChange}  defaultCurrent={1} total={this.state.count} />
+                    mess.length == 0 ? <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 250 }}>
+                        <Spin />
+                    </div> : <Pagination className="myPage" current={page} onChange={this.pageChange} defaultCurrent={1} total={count} />
                 }
             </div>
         )
     }
-    pageChange=(page)=> {
-        const { url} = this.props
+    gotoWrite = ()=>{
+        //console.log(this.props.history)
+        this.props.history.push('/visitorMarkdown')
+    }
+    pageChange = (page) => {
+        const { url } = this.props
         document.scrollingElement.scrollTop = 0
         axios.post(url, { page }).then(rel => {
             this.setState({ mess: rel.data.data, count: rel.data.count, page: page })
             this.updatePagesSize(page)
         })
     }
-    toShowMd=(txt)=> {
+    toShowMd = (txt) => {
         let oldHtml = md.render(Base64.decode(txt))
         const $ = cheerio.load(oldHtml)
         let randomLen = parseInt(2 + Math.random() * 3)
@@ -82,20 +93,20 @@ class Note extends React.Component {
         }
         return $('body').html()
     }
-    getRandomColor=()=> {
+    getRandomColor = () => {
         let num = parseInt(Math.random() * this.state.color.length)
         return this.state.color[num]
     }
 
     componentDidMount() {
-        const {pages,index} = this.props
+        const { pages, index } = this.props
         this.pageChange(pages[index])
     }
 
-    updatePagesSize = page=>{
-        let {changePages, pages , index} = this.props
+    updatePagesSize = page => {
+        let { changePages, pages, index } = this.props
         pages[index] = page
-        changePages&&changePages(pages)
+        changePages && changePages(pages)
     }
 }
 export default connect(state => state, (dispatch) => {

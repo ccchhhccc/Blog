@@ -29,7 +29,7 @@ class VistorMd extends Component {
         this.state = {
             mdDialog: false,
             title: '',
-            writeTxt: '# 请遵守法律法规\n### 社会主义核心价值观\n```js\nconsole.log(`富强、民主、文明、和谐`)\nconsole.log(`自由、平等、公正、法治`)\nconsole.log(`爱国、敬业、诚信、友善`)\n```\n\n```diff\n+ 鸟宿池边树，僧敲月下门\n- 鸟宿池边树，僧推月下门\n```\n\n### 显示图片\n![](https://f10.baidu.com/it/u=1726574660,189006746&fm=72)\n\n这是很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的一句话\n\n换行请隔断\n\n### 此文档遵循markdown语法\n',
+            writeTxt: '# 请遵守法律法规\n### 社会主义核心价值观\n```js\nconsole.log(`富强、民主、文明、和谐`)\nconsole.log(`自由、平等、公正、法治`)\nconsole.log(`爱国、敬业、诚信、友善`)\n```\n\n```diff\n+ 鸟宿池边树，僧敲月下门\n- 鸟宿池边树，僧推月下门\n```\n\n### 显示图片\n![](https://chenhaichao.cn/dist/Daring%20in%20the%20Franxx/IMG_1758.jpg)\n\n这是很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长的一句话\n\n换行请隔断\n\n### 此文档遵循markdown语法\n',
             showMd: '',
             tags: ['小可爱'],
             inputVisible: false,
@@ -66,7 +66,7 @@ class VistorMd extends Component {
                             const isLongTag = tag.length > 20;
                             const myColor = this.getRandomColor()
                             const tagElem = (
-                                <Tag key={tag} closable={true} color={myColor} afterClose={() => this.handleClose(tag)}>
+                                <Tag key={tag} closable={true} color={myColor} onClose={() => this.handleClose(tag)}>
                                     {isLongTag ? `${tag.slice(0, 20)}...` : tag}
                                 </Tag>
                             );
