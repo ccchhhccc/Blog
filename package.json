@@ -5,7 +5,7 @@
   "proxy": "http://chenhaichao.cn",
   "dependencies": {
     "antd": "^3.7.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-plugin-import": "^1.8.0",
     "cheerio": "^1.0.0-rc.2",
     "highlight.js": "^9.12.0",
